@@ -14,6 +14,7 @@ import NbpMoniterContainer from './containers/mesure/NbpMoniterContainer';
 import RespMoniterContainer from './containers/mesure/RespMoniterContainer';
 import Spo2MoniterContainer from './containers/mesure/Spo2MoniterContainer';
 import TempMoniterContainer from './containers/mesure/TempMoniterContainer';
+import BluetoothConnnectContainer from './containers/bluetooth/BluetoothConnectContainer';
 import ForgetContainer from './containers/login/ForgetContainer';
 import {useTheme} from 'react-native-paper';
 
@@ -111,6 +112,7 @@ export default function () {
         <Stack.Screen name="resp" component={RespMoniterContainer}/>
         <Stack.Screen name="spo2" component={Spo2MoniterContainer}/>
         <Stack.Screen name="temp" component={TempMoniterContainer}/>
+        <Stack.Screen name="bluetoothconnect" component={BluetoothConnnectContainer}/>
         
       </Stack.Navigator>
     </NavigationContainer>
