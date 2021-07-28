@@ -17,6 +17,7 @@ import DeviceList from './BluetoothDeviceListComponent';
 import {useSelector, useDispatch} from 'react-redux';
 import * as BlueToothAction from '../actions/BlueToothActions';
 import {Buffer} from 'buffer';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 import {requestLocationPermission} from '../utils/permission';
 global.Buffer = Buffer;
 const Button = ({title, onPress, style, textStyle}) => (
@@ -28,6 +29,7 @@ const Button = ({title, onPress, style, textStyle}) => (
 const BluetoothConnectComponent = () => {
   const activeTabStyle = {borderBottomWidth: 6, borderColor: '#009688'};
   const [BTisEnabled, setBTisEnabled] = useState(false);
+  const navigation = useNavigation();
   const [BTdiscovering, setBTdiscovering] = useState(false);
   const [BTConnectdevice, setBTConnectdevice] = useState([]);
   const [BTdevices, setBTdevices] = useState([]);
@@ -213,6 +215,7 @@ const BluetoothConnectComponent = () => {
         setBTConnectdevice(device);
         setBTconnected(true);
         setBTconnecting(false);
+        navigation.dispatch(CommonActions.goBack());
         dispatch(
           BlueToothAction.bluetoothRead(
             {},
@@ -241,6 +244,7 @@ const BluetoothConnectComponent = () => {
   const onDevicePress = device => {
     if (BTsection === 0) {
       connect(device);
+
     } else {
       pairDevice(device);
     }
