@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 
-const deviceName = /^SN[0-9]{4}[A-Z][0-9]{7}$/;
+const deviceName = /^SN/;
 
 const BluetoothDeviceList = ({
   devices,
