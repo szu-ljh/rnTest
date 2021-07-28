@@ -17,7 +17,7 @@ import * as ScreenUtil from '../../utils/ScreenUtil';
 const{width, height, scale} = Dimensions.get('window');
 
 const BluetoothConnnectContainer = ({navigation}) => {
-  let data = useSelector((state) => state.bluetooth);
+  let data = useSelector((state) => state.enabled);
   return (
     <SafeAreaView style={styles.container}>
       {/* 标题栏 */}
@@ -32,7 +32,7 @@ const BluetoothConnnectContainer = ({navigation}) => {
         <Text style={styles.title}>添加设备</Text>
       </View>
       <ScrollView >
-      <BluetoothConnectComponent isable ={data.isable}/>
+      <BluetoothConnectComponent isable ={data}/>
       </ScrollView>
     </SafeAreaView>
   );

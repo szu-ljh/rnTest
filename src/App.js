@@ -7,6 +7,16 @@
 import React from 'react';
 import AppNavigation from './AppNavigation';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
+import {Provider} from 'react-redux';
+import {createStore,applyMiddleware} from 'redux';
+import bluetoothReducers from './reducers/bluetoothReducers';
+import creatSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas/rootSaga';
+
+const sagaMiddleware = creatSagaMiddleware();
+let store = createStore(bluetoothReducers,applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootSaga);
+
 
 const theme = {
   ...DefaultTheme,
@@ -18,9 +28,11 @@ const theme = {
 };
 const App = () => {
   return (
-    <PaperProvider theme={theme}>
-      <AppNavigation />
-    </PaperProvider>
+    <Provider store={store}>
+      <PaperProvider theme={theme}>
+        <AppNavigation />
+      </PaperProvider>      
+    </Provider>
   );
 };
 

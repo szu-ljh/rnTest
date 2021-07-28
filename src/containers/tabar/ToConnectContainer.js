@@ -8,7 +8,7 @@ const ToConnectContainer = ({navigation}) => {
       <Button 
         title='添加设备'
         onPress={()=>{
-          navigation.navigate('home');
+          navigation.navigate('bluetoothconnect');
         }}/>
     </SafeAreaView>
   );
