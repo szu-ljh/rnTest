@@ -95,9 +95,9 @@ const NbpMoniterContainer=({navigation})=>{
             <TouchableOpacity
               style={styles.botton}
               onPress={() => {
-                setIsMasure(!isMeasure);
                 // console.log(isMeasure);
                 if (!isMeasure) {
+                  setIsMasure(true);
                   measureFlag=!measureFlag;
                   console.log('测量ks');
                   dispatch(
@@ -119,7 +119,7 @@ const NbpMoniterContainer=({navigation})=>{
                 }
               }}>
               <Text style={styles.bottontext}>
-                {measureFlag ? '停止测量' : '开始测量'}
+                {isMeasure ? '停止测量' : '开始测量'}
               </Text>
             </TouchableOpacity>
         </View>
