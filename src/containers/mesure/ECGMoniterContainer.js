@@ -6,9 +6,6 @@ import {useSelector,useDispatch} from 'react-redux';
 import * as ScreenUtil from '../../utils/ScreenUtil'
 
 const interval = []; //定时器
-let duration = 180; //计时（单位秒）每3分钟上传一次
-const ECGWave1 = [];
-const ECGWave2 = []; //波形缓冲区
 
 const ECGMoniterContainer=({navigation})=>{
     const [isMeasure, setIsMasure] = useState(false);
@@ -16,14 +13,11 @@ const ECGMoniterContainer=({navigation})=>{
     const BTdata = useSelector((state) => state); //蓝牙接受数据发生改变是刷新组件
     if (BTdata.data && BTdata.data.type === constant.TYPE_ECG) {
         var {Wave1, Wave2, EcgHr, LlLead, LaLead, RaLead, VLead} = BTdata.data;
-        ECGWave1.push(...Wave1);
-        ECGWave2.push(...Wave2);
     }
     function startMeasure() {
         interval.push(setInterval(taskPer200ms, 1500)); //启动计时器，调用函数，
     }
     function taskPer200ms() {
-        duration = duration - 1;
         dispatch(
           BlueToothAction.getBluetoothRead(
             {type: constant.TYPE_ECG},
@@ -31,10 +25,6 @@ const ECGMoniterContainer=({navigation})=>{
             () => {},
           ),
         );
-        if (LlLead & VLead & (duration <= 0)) {
-          console.log('发送');
-          duration = 180;
-        }
     }
     function stopMeasure() {
         for (let index = 0; index < interval.length; index++) {
@@ -42,10 +32,6 @@ const ECGMoniterContainer=({navigation})=>{
           clearInterval(element);
         }
         interval.splice(0, interval.length);
-        ECGWave1.splice(0);
-        //setECGWave1([]);
-        ECGWave2.splice(0);
-        duration = 180;
     }
     
     return (
