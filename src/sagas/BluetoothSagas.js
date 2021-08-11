@@ -77,14 +77,14 @@ export function* watchUseReadBTData() {
 }
 
 export function * getReadBTData(action) {
-  console.log('进来get!!');
+  // console.log('进来get!!');
     if(use){            
       try {
           if (mBlueToothProParaBoardData.getProDataOK()){
-            console.log('hhhhOK');
+            // console.log('hhhhOK');
             switch (action.data.type) {
               case constant.TYPE_ECG:
-                console.log('hhhhOK1');
+                // console.log('hhhhOK1');
                 yield put(BlueToothAction.setBluetoothRead({
                   data: {
                     Wave1: mBlueToothProParaBoardData.getEcg1WaveData(),
@@ -99,7 +99,7 @@ export function * getReadBTData(action) {
                     type: constant.TYPE_ECG,
                   },
                 }));
-                console.log('hhhhOK2');
+                // console.log('hhhhOK2');
                 break;
                 case constant.TYPE_TEMP:
                   yield put(BlueToothAction.setBluetoothRead({
@@ -155,7 +155,7 @@ export function * getReadBTData(action) {
                 break;
             }
           }else{
-            console.log('hhhh'); 
+            console.log('未ok'); 
           }
       } catch (error) {
         console.log('eeeee', error);

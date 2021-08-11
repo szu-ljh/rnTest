@@ -38,6 +38,11 @@ export const getBluetoothRead = (data) => ({
   data,
 });
 
+export const getWaveData = (data) => ({
+  type: types.GET_WAVE_DATA,
+  data,
+});
+
 export const setBluetoothRead = (data) => ({
     type: types.SET_BLUE_TOOTH_READ,
     data,
